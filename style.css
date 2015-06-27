@@ -1,0 +1,43 @@
+html,body,h1,h2,h3,p,ol,
+ul,li,a{
+	padding: 0px;
+	border: 0px;
+	margin: 0px;
+}
+body{
+	padding: 0px 10px 0px 10px;
+	font-family: "Lucida Grande",Helvetica,sans-serif;
+	font-weight: px;
+}
+h1{
+	padding: 5px 5px 5px 10px;
+	margin: 15px 0 15px 0;
+	border-bottom: 2px solid #989898;
+	background-color: #009999;
+}
+#nav{
+	margin-top: 25px;
+}
+
+#home{
+	margin:5px 0px 0px 25px;
+}
+li {
+	display: inline;
+	padding: 5px 5px 5px 5px;
+	
+	border: 2px solid #989898;
+	border-radius: 5px;
+	font-size: 15px;
+}
+#main{
+	padding: 25px 10px 0px 10px;;
+}
+#divTweet{
+	margin-top: 20px;
+	padding: 0px 10px 0px 10px;
+	font-family: "Lucida Grande",Helvetica,sans-serif;
+	font-weight: px;
+}
+
+

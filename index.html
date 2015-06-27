@@ -1,27 +1,78 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script src="jquery.js"></script>
-    <script src="data_generator.js"></script>
-  </head>
-  <body>
-    <script>
+<head>
+  <script src="jquery.js"></script>
+  <script src="data_generator.js"></script>
+  <script src="time.js"></script>
+  
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script>
+  
+  $(document).ready(function(){
+   var $body = $('#main');
+   $body.html('');
+   var usuario = getUrlParameter('usr');
+   var index = streams.home.length - 1;
+   while(index >= 0){
+     var tweet = streams.home[index];
+     var $tweet = $('<div></div>');
+		   //var $usr = '<a href=index.html?usr=' + tweet.user + '>@' + tweet.user + '</a>';
+		   if (usuario == '' || usuario == tweet.user)
+       {$tweet.text('@' + tweet.user + ': ' + tweet.message + ' [' + jQuery.timeago( tweet.created_at) + ']');			
+     
+     $tweet.appendTo($body);
+   }
+		   //alert($tweet);
+      index -= 1;
 
-      $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+    }
+     
+    // ('#btntweet').on('click',function(){
+    //   var $text = $(this).$('#tweetText').val():
+    //   var $newUser = $('<p>@dhernz:'+$text+'</p>');
+    //   var $divTweet = $('#divTweet');
+    //   $newUser.appendTo($divTweet);
+    // });
 
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
-        }
 
-      });
+  });
 
-    </script>
-  </body>
+function getUrlParameter(sParam)//from stackoverflow to search for the user in the page using html and jquery.
+{
+  var sPageURL = window.location.search.substring(1);
+  var sURLVariables = sPageURL.split('&');
+  for (var i = 0; i < sURLVariables.length; i++) 
+  {
+    var sParameterName = sURLVariables[i].split('=');
+    if (sParameterName[0] == sParam) 
+    {
+      return sParameterName[1];
+    }
+  }
+  return '';
+}
+
+  </script>
+  
+</head>
+<body>
+  <header>
+
+    <h1>TWITTLER</h1>
+    <ul id="nav">
+      <li id="home"><a href="index.html">Home</a></li>
+      <li id="home"><a href="index.html?usr=shawndrost">shawndrost</a></li>
+      <li id="home"><a href="index.html?usr=sharksforcheap">sharksforcheap</a></li>
+      <li id="home"><a href="index.html?usr=mracus">mracus</a></li>
+      <li id="home"><a href="index.html?usr=douglascalhoun">douglascalhoun</a></li>
+    </ul>
+  </header>
+  <div id="main">
+  </div>
+  <div id="divTweet">
+    <textarea id="tweetText"> </textarea>
+    <input type="button" id="btntweet" value="Tweet">
+    <p> </p>
+  </div> 
+</body>
 </html>
