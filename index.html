@@ -9,33 +9,42 @@
   <script>
   
   $(document).ready(function(){
-   var $body = $('#main');
-   $body.html('');
+   var $body = $('#main');  
    var usuario = getUrlParameter('usr');
    var index = streams.home.length - 1;
+   
    while(index >= 0){
      var tweet = streams.home[index];
      var $tweet = $('<div></div>');
 		   //var $usr = '<a href=index.html?usr=' + tweet.user + '>@' + tweet.user + '</a>';
-		   if (usuario == '' || usuario == tweet.user)
-       {$tweet.text('@' + tweet.user + ': ' + tweet.message + ' [' + jQuery.timeago( tweet.created_at) + ']');			
-     
-     $tweet.appendTo($body);
-   }
+		   if (usuario == '' || usuario == tweet.user){
+
+        $tweet.text('@' + tweet.user + ': ' + tweet.message + ' [' + jQuery.timeago( tweet.created_at) + ']');			
+
+        $tweet.appendTo($body);
+
+      }
 		   //alert($tweet);
-      index -= 1;
+       index -= 1;
 
     }
-     
-    // ('#btntweet').on('click',function(){
+      var userTweet = function (){
+        $tweet.text('@dhernz:' + tweet.message + ' [' + jQuery.timeago(tweet.created_at) + ']');      
+
+        $tweet.appendTo($body);
+      };
+
+     $('#btntweet').on('click',function(){
+        userTweet(); 
+     });
+
+   });
+   // ('#btntweet').on('click',function(){
     //   var $text = $(this).$('#tweetText').val():
     //   var $newUser = $('<p>@dhernz:'+$text+'</p>');
     //   var $divTweet = $('#divTweet');
     //   $newUser.appendTo($divTweet);
-    // });
 
-
-  });
 
 function getUrlParameter(sParam)//from stackoverflow to search for the user in the page using html and jquery.
 {
@@ -52,8 +61,8 @@ function getUrlParameter(sParam)//from stackoverflow to search for the user in t
   return '';
 }
 
-  </script>
-  
+</script>
+
 </head>
 <body>
   <header>
@@ -70,7 +79,6 @@ function getUrlParameter(sParam)//from stackoverflow to search for the user in t
   <div id="main">
   </div>
   <div id="divTweet">
-    <textarea id="tweetText"> </textarea>
     <input type="button" id="btntweet" value="Tweet">
     <p> </p>
   </div> 
